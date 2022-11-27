@@ -1,0 +1,18 @@
+{
+  "unique_id": "ruuvitag_cc2be24ae159_low_battery",
+  "object_id": "cc2be24ae159_low_battery",
+  "name": "Kids room tag low battery",
+  "state_topic": "ruuvitag/CC:2B:E2:4A:E1:59",
+  "json_attributes_topic": "ruuvitag/CC:2B:E2:4A:E1:59",
+  "value_template": "{% if (state_attr('binary_sensor.cc2be24ae159_low_battery', 'temperature')|float(default=20)) < -20 and (state_attr('binary_sensor.cc2be24ae159_low_battery', 'batteryVoltage')|float(default=3)) < 2 %}ON{% elif (state_attr('binary_sensor.cc2be24ae159_low_battery', 'temperature')|float(default=20)) < 0 and (state_attr('binary_sensor.cc2be24ae159_low_battery', 'batteryVoltage')|float(default=3)) < 2.3 %}ON{% elif (state_attr('binary_sensor.cc2be24ae159_low_battery', 'temperature')|float(default=20)) >= 0 and (state_attr('binary_sensor.cc2be24ae159_low_battery', 'batteryVoltage')|float(default=3)) < 2.5 %}ON{% else %}OFF{% endif %}",
+  "json_attributes_template": "{\n      \"temperature\": \"{{value_json.temperature}}\",\n      \"batteryVoltage\": \"{{value_json.batteryVoltage}}\",\n      \"mac\": \"{{value_json.mac}}\",\n      \"dataFormat\": \"{{value_json.data_format}}\",\n      \"rssi\": \"{{value_json.rssi}}\",\n      \"txPower\": \"{{value_json.txPower}}\",\n      \"measurementSequenceNumber\": \"{{value_json.measurementSequenceNumber}}\"\n    }",
+  "icon": "mdi:battery",
+  "device": {
+    "manufacturer": "Ruuvi",
+    "model": "RuuviTag",
+    "identifiers": [
+      "CC:2B:E2:4A:E1:59"
+    ],
+    "name": "Kids room tag low battery"
+  }
+}
