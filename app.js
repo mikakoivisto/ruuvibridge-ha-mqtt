@@ -30,8 +30,8 @@ class App {
       password: config.mqttPass
     });
 
+    this.registerEventListeners();
     if (this.mqtt.connected) {
-      this.registerEventListeners();
       this.mqttConnected();
     }
   }
