@@ -69,10 +69,6 @@ class App {
     if (topic === self.config.hassTopic) {
       logInfo("HA reloaded");
       self.discoveredTags = {};
-      this.mqtt.publish(config.ruuvitagTopic + "/CC:2B:E2:4A:E1:59", '{"name":"Kids room","mac":"CC:2B:E2:4A:E1:59","timestamp":1669520466,"data_format":5,"temperature":19.82,"humidity":33.02,"pressure":115535,"accelerationX":-0.076,"accelerationY":0.992,"accelerationZ":0.012,"batteryVoltage":2.633,"txPower":4,"rssi":-84,"movementCounter":113,"measurementSequenceNumber":26069,"accelerationTotal":0.9949793967716115,"absoluteHumidity":5.645394044209499,"dewPoint":3.0975793719466598,"equilibriumVaporPressure":2311.0070686396252,"airDensity":1.371388854252395,"accelerationAngleFromX":94.38071857176026,"accelerationAngleFromY":4.435097680410382,"accelerationAngleFromZ":89.30896456186777}')
-      setTimeout(() => {
-        this.mqtt.publish(config.ruuvitagTopic + "/CC:2B:E2:4A:E1:59", '{"name":"Kids room","mac":"CC:2B:E2:4A:E1:59","timestamp":1669520466,"data_format":5,"temperature":19.82,"humidity":33.02,"pressure":115535,"accelerationX":-0.076,"accelerationY":0.992,"accelerationZ":0.012,"batteryVoltage":2.633,"txPower":4,"rssi":-84,"movementCounter":113,"measurementSequenceNumber":26069,"accelerationTotal":0.9949793967716115,"absoluteHumidity":5.645394044209499,"dewPoint":3.0975793719466598,"equilibriumVaporPressure":2311.0070686396252,"airDensity":1.371388854252395,"accelerationAngleFromX":94.38071857176026,"accelerationAngleFromY":4.435097680410382,"accelerationAngleFromZ":89.30896456186777}');
-      }, 5000);
       return;
     }
     let measurement = JSON.parse(payload);
