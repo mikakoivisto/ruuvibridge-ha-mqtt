@@ -231,6 +231,7 @@ class App {
     let objectId = `${objectIdPrefix}${mac}_${disco.jsonAttribute}`;
     let confTopic = `${config.homeassistantTopicPrefix}/sensor/${objectId}/config`;
     let stateTopic = `${config.ruuvitagTopic}/${measurement.mac}`;
+    let deviceName = (measurement.name && measurement.name !== '') ? `${measurement.name}` : `RuuviTag ${measurement.mac}`;
     let name = (measurement.name && measurement.name !== '') ? `${measurement.name} ${disco.namePostfix}` : `RuuviTag ${measurement.mac} ${disco.namePostfix}`;
     let valueTemplate = `{{ value_json.${disco.jsonAttribute}${disco.jsonAttributeMutator} | float | round(${disco.precision}) }}`;
     let attributesTemplate = `{
@@ -251,12 +252,12 @@ class App {
       value_template: valueTemplate,
       json_attributes_template: attributesTemplate,
       icon: disco.icon,
-      unit_of_measurement: disco.unit_of_measurement,
+      unit_of_measurement: disco.unitOfMeasurement,
       device: {
         manufacturer: "Ruuvi",
         model: "RuuviTag",
         identifiers: [ measurement.mac ],
-        name: name
+        name: deviceName
       }
     };
 
