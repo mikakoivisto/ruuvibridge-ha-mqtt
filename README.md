@@ -45,3 +45,14 @@ RUUVITOPIC=ruuvitag
 HASSTOPIC=homeassistant/status
 DEBUG=app:info,*:error,spa:info
 ```
+
+You can also limit which attributes are exposed to Home Assistant with RUUVIATTRIBUTES environment variable. Example:
+```
+RUUVIATTRIBUTES=temperature,humidity,pressure,dewPoint,batteryVoltage
+```
+
+Home Assistant object id is {mac}_{attribute}. The mac is without : and lower case. You can also add prefix to it if you want to prefix them with say ruuvitag or ruuvi by setting RUUVIOBJECTIDPREFIX. Example:
+```
+RUUVIOBJECTIDPREFIX=ruuvitag
+```
+This will cause it to generate the sensor object id as ruuvitag_{mac}_{attribute} for example tag with mac CC:2B:E2:4A:E1:59 will have temperature sensor object id sensor.ruuvitag_cc2be24ae159_temperature. Without the prefix it would be sensor.cc2be24ae159_temperature
