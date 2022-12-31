@@ -282,6 +282,7 @@ class App {
     let objectId = `${objectIdPrefix}${mac}_low_battery`;
     let confTopic = `${config.homeassistantTopicPrefix}/binary_sensor/${objectId}/config`;
     let stateTopic = `${config.ruuvitagTopic}/${measurement.mac}`;
+    let deviceName = (measurement.name && measurement.name !== '') ? `${measurement.name}` : `RuuviTag ${measurement.mac}`;
     let name = (measurement.name && measurement.name !== '') ? `${measurement.name} ${disco.namePostfix}` : `RuuviTag ${measurement.mac} ${disco.namePostfix}`;
     // Thresholds from https://github.com/ruuvi/com.ruuvi.station/issues/335#issuecomment-1173209894
     let valueTemplate = `{% if state_attr('binary_sensor.${objectId}', 'temperature') is not defined or state_attr('binary_sensor.${objectId}', '${disco.jsonAttribute}') is not defined%}Unknown{% elif (state_attr('binary_sensor.${objectId}', 'temperature')|float(default=20)) < -20 and (state_attr('binary_sensor.${objectId}', '${disco.jsonAttribute}')|float(default=3)) < 2 %}ON{% elif (state_attr('binary_sensor.${objectId}', 'temperature')|float(default=20)) < 0 and (state_attr('binary_sensor.${objectId}', '${disco.jsonAttribute}')|float(default=3)) < 2.3 %}ON{% elif (state_attr('binary_sensor.${objectId}', 'temperature')|float(default=20)) >= 0 and (state_attr('binary_sensor.${objectId}', '${disco.jsonAttribute}')|float(default=3)) < 2.5 %}ON{% else %}OFF{% endif %}`;
@@ -309,7 +310,7 @@ class App {
         manufacturer: "Ruuvi",
         model: "RuuviTag",
         identifiers: [ measurement.mac ],
-        name: name
+        name: deviceName
       }
     };
 
